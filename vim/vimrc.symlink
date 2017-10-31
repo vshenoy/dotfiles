@@ -1,0 +1,11 @@
+" no vi compatibility
+set nocompatible
+
+" ignore case while searching
+set ignorecase
+
+" do incremental search
+set incsearch
+
+" do not highlight search results
+set nohlsearch

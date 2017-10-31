@@ -1,0 +1,55 @@
+# simulate GNU screen
+
+# change the default prefix key to C-a
+unbind C-b
+set -g prefix C-a
+
+# C-a " : show all windows
+unbind '"'
+bind '"' choose-window
+
+# C-a C-a : switch to last window
+bind C-a last-window
+
+# C-a a : send C-a key to the window
+bind a send-prefix
+
+# delete the default keybinding for vertical split
+unbind %
+
+# next 3 commands create new window/pane.
+# current directory of new window/pane will be same as that of the
+# current directory of current window/pane
+# https://superuser.com/questions/491897/tmux-forgets-the-directory-where-the-session-was-created
+
+# C-a | : vertical split
+bind | split-window -h -c '#{pane_current_path}'
+
+# C-a - : horizontal split
+bind - split-window -v -c '#{pane_current_path}'
+
+# C-a c : create new window
+bind c new-window -c '#{pane_current_path}'
+
+# C-a [hjkl] : vi like keybindings to move between the panes
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# status bar
+set -g status-bg black
+set -g status-fg white
+
+# monitor for activity in the window
+set -g monitor-activity on
+
+# scrollback buffer size
+set -g history-limit 5000
+
+# use vi keybindings in copy mode
+set -g mode-keys vi
+
+# prevent applications like vim, less etc.
+# clearing the screen on exit
+set-window-option -g alternate-screen off
