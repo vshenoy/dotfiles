@@ -114,7 +114,19 @@ install_dotfiles () {
   done
 }
 
+setup_bashrc () {
+  local bashrc_file="$HOME/.bashrc"
+  if ! grep -q "^# vshenoy bashrc customizations" $bashrc_file; then
+    cat >> $bashrc_file << 'EOF'
+
+# vshenoy bashrc customizations
+source $HOME/dotfiles/bash/bashrc.init
+EOF
+  fi
+}
+
 install_dotfiles
+setup_bashrc
 
 echo ''
 echo '  All installed!'

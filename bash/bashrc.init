@@ -1,0 +1,16 @@
+DOTFILES=$HOME/dotfiles
+export DOTFILES
+
+mkdir -p $DOTFILES/scratch
+
+# local customizations
+if [ -f "${HOME}/.bashrc.local" ]; then
+    source ${HOME}/.bashrc.local
+fi
+
+# topic based customizations
+for src in $(find -H "$DOTFILES" -maxdepth 2 -name '*.bash' -not -path '*.git*')
+do
+    source "$src"
+done
+unset -v src
