@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# if the window manager is dwm,
+# run suckless status monitor
+if [ "x$DESKTOP_SESSION" = "xdwm" ]; then
+    slstatus &
+fi
