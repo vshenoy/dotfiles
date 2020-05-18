@@ -1,0 +1,5 @@
+(setq inhibit-startup-echo-area-message "vshenoy")
+
+(let ((emacs-config-directory
+       (file-name-directory (file-truename load-file-name))))
+  (load (concat emacs-config-directory "startup.el")))
